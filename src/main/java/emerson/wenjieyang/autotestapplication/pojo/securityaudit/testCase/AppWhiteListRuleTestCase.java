@@ -1,6 +1,7 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
 
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.page.Inf;
+import lombok.Data;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @description: 应用白名单实体类
  */
 
+@Data
 public class AppWhiteListRuleTestCase {
 
     // 规则名

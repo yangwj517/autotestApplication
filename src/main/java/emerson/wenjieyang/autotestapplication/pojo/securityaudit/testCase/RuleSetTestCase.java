@@ -2,6 +2,8 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import lombok.Data;
+import lombok.Getter;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,7 +19,7 @@ import java.util.List;
  * @Version: 1.0
  * @description: 规则集测试用例
  */
-
+@Data
 public class RuleSetTestCase {
 
     // 规则集名称
@@ -50,10 +52,6 @@ public class RuleSetTestCase {
     }
 
     public RuleSetTestCase() {
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getDesc() {

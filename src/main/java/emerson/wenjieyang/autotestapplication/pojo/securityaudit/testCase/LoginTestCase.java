@@ -2,6 +2,7 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import lombok.Data;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,7 +19,7 @@ import java.util.List;
  * @description:  登录测试用例对象
  */
 
-
+@Data
 public class LoginTestCase {
 
     // 用户名

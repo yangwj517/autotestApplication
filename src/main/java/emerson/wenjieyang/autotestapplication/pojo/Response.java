@@ -1,6 +1,8 @@
 package emerson.wenjieyang.autotestapplication.pojo;
 
 
+import lombok.Data;
+
 /**
  * @BelongsProject : autotestApplication
  * @BelongsPackage : emerson.wenjieyang.autotestapplication.pojo
@@ -11,6 +13,7 @@ package emerson.wenjieyang.autotestapplication.pojo;
  */
 
 
+@Data
 public class Response <T> {
 
     private int code ;
