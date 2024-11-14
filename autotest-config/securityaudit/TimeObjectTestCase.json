@@ -1,0 +1,48 @@
+[
+    {
+        "type" : "循环时间表",
+        "name" : "testcase_1",
+        "date" : [1,2,3,4],
+        "beginTime" : "00:00",
+        "endTime" : "00:00"
+    },
+    {
+        "type" : "单词时间表",
+        "name" : "testcase_2",
+        "beginTime" : "2012-12-02 01:00",
+        "endTime" : "2012-12-02 02:00"
+    },
+    {
+        "type" : "循环时间表",
+        "name" : "testcase_3",
+        "date" : [1,3,4],
+        "beginTime" : "00:00",
+        "endTime" : "01:00"
+    },
+    {
+        "type" : "单词时间表",
+        "name" : "testcase_4",
+        "beginTime" : "2012-12-02 01:00",
+        "endTime" : "2012-12-02 00:00"
+    },
+    {
+        "type" : "循环时间表",
+        "name" : "testcase_1",
+        "date" : [1,2,3,4],
+        "beginTime" : "00:00",
+        "endTime" : "00:00"
+    },
+    {
+        "type" : "单词时间表",
+        "name" : "testcase_5",
+        "beginTime" : "2012-12-02 01:00",
+        "endTime" : "2012-12-02 00:00"
+    },
+    {
+        "type" : "循环时间表",
+        "name" : "testcase_6",
+        "date" : [1,2,3,4],
+        "beginTime" : "00:00",
+        "endTime" : "00:00"
+    }
+]

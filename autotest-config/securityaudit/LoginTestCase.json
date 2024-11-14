@@ -1,0 +1,52 @@
+[
+    {
+        "loginName" : "secadmin",
+        "password" : "secAdmin#1234567",
+        "expectedResult" : true
+    },
+    {
+        "loginName" : "secauditor",
+        "password" : "secAuditor#12345",
+        "expectedResult" : false
+    },
+    {
+        "loginName" : "sysAdmin",
+        "password" : "sysAdmin#123456",
+        "expectedResult" : false
+    },
+    {
+        "loginName" : "1",
+        "password" : "123",
+        "expectedResult" : false
+    },
+    {
+        "loginName" : "ywj1",
+        "password" : "020517ywJ@",
+        "expectedResult" : true
+    },
+    {
+        "loginName" : "secadmin",
+        "password" : "secAdmin#1234567",
+        "expectedResult" : false
+    },
+    {
+        "loginName" : "secauditor",
+        "password" : "secAuditor#12345",
+        "expectedResult" : true
+    },
+    {
+        "loginName" : "sysAdmin",
+        "password" : "sysAdmin#123456",
+        "expectedResult" : true
+    },
+    {
+        "loginName" : "1",
+        "password" : "123",
+        "expectedResult" : true
+    },
+    {
+        "loginName" : "ywj1",
+        "password" : "020517ywJ@",
+        "expectedResult" : false
+    }
+]

@@ -169,6 +169,51 @@ public class AppWhiteListRulePage {
         desc.sendKeys(inf.getDesc());
 
     } // Modbus-TCP
+    private void setList3(Inf inf , int index,WebDriver driver) {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        // FIXME : 下拉框选择any时 ，程序会找不到。需要修复。
+        // 仅需要知道是第几行就行了
+        // 接口ID
+        WebElement interfaceID = driver.findElement(By.cssSelector("select[data-idx='" + index + "_0']"));
+        Select select = new Select(interfaceID);
+        if(!inf.getInterfaceId().equals("any")&&!inf.getInterfaceId().isEmpty()){
+            try{
+                select.selectByVisibleText(inf.getInterfaceId());
+            }catch (NoSuchElementException e){
+            }
+        }
+
+
+        // 操作码
+        WebElement actionCode = driver.findElement(By.cssSelector("select[data-idx='" + index + "_1']"));
+        Select select1 = new Select(actionCode);
+        if(!inf.getActionCode().equals("any")&&!inf.getActionCode().isEmpty()){
+            try{
+                select1.selectByVisibleText(inf.getActionCode());
+            }catch (NoSuchElementException e){}
+        }
+
+
+        // 块类型
+        WebElement partType = driver.findElement(By.cssSelector("select[data-idx='" + index + "_2']"));
+        Select select2 = new Select(partType);
+        if(!inf.getPartType().equals("any")&&!inf.getPartType().isEmpty()){
+            try{
+                select2.selectByVisibleText(inf.getPartType());
+            }catch (NoSuchElementException e){}
+        }
+
+
+        // 描述
+        WebElement desc = driver.findElement(By.cssSelector("select[data-idx='" + index + "_3']"));
+        desc.sendKeys(inf.getDesc());
+
+    } // Modbus-TCP
 
 
     /**

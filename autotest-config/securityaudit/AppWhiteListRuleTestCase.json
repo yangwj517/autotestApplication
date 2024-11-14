@@ -1,0 +1,25 @@
+[
+    {
+        "ruleName":"testCase1",
+        "ruleDesc":"testCase1",
+        "sourceIp":"192.168.102.188",
+        "targetIp":"192.168.102.150",
+        "protocolName":"S7",
+        "expectedResult":true,
+        "list":[
+            {
+                "interfaceId":"any",
+                "actionCode":"any",
+                "partType":"any",
+                "desc":" "
+            },
+            {
+                "interfaceId":"PNIODevice",
+                "actionCode":"CONNECT",
+                "partType":"Reserved",
+                "desc":"desc"
+            }
+        ]
+
+    },
+]

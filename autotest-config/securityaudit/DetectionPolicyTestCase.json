@@ -1,0 +1,30 @@
+[
+    {
+        "name":"testCase1",
+        "desc":"testCase1",
+        "timeName":"testcase_1",
+        "sourceAddressName":"any",
+        "targetAddressName":"any",
+        "ruleName":"any",
+        "expectedResult":true
+    },
+    {
+        "name":"testCase2",
+        "desc":"testCase2",
+        "timeName":"any",
+        "sourceAddressName":"any",
+        "targetAddressName":"any",
+        "ruleName":"any",
+        "expectedResult":true
+    },
+    {
+        "name":">>>><<<<<",
+        "desc":"testCase2",
+        "timeName":"any",
+        "sourceAddressName":"any",
+        "targetAddressName":"any",
+        "ruleName":"any",
+        "expectedResult":true
+    }
+
+]

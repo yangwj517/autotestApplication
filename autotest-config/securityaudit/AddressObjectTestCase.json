@@ -1,0 +1,37 @@
+[
+  {
+    "name":"TestCase1",
+    "desc":"testCase1",
+    "addressProjects":["192.168.0.0-192.168.0.254","192.168.1.1","192.168.2.0/23"],
+    "excludeAddressProjects":["1.1.1.1","1.1.1.2/24","192.168.102.1-192.168.102.100"],
+    "expectedResult":true
+  },
+  {
+    "name":"TestCase2",
+    "desc":"testCase2",
+    "addressProjects":["192.168.3.0-192.168.3.254","192.168.1.1","192.168.2.0/23"],
+    "excludeAddressProjects":["1.1.1.1","1.1.1.2/24","192.168.0.0-192.168.3.254"],
+    "expectedResult":true
+  },
+  {
+    "name":"_TestCase3",
+    "desc":"testCase3",
+    "addressProjects":["192.168.0.0-192.168.0.254","192.168.1.1","192.168.2.0/23"],
+    "excludeAddressProjects":["2.2.2.2"],
+    "expectedResult":true
+  },
+  {
+    "name":"TestCase4",
+    "desc":"testCase4",
+    "addressProjects":["192.168.0.0-192.168.0","192.168.1.1","192.168.2.0/23"],
+    "excludeAddressProjects":["1.1.1.1","1.1.1.2/24","192.168.102.1-192.168.102.100"],
+    "expectedResult":false
+  },
+  {
+    "name":"TestCase5",
+    "desc":"testCase5",
+    "addressProjects":["192.168.0.0-192.168.0.254","192.168.1.1","192.168.2.0/23"],
+    "excludeAddressProjects":["1.1.1"],
+    "expectedResult":false
+  }
+]
