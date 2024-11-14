@@ -2,6 +2,8 @@ package emerson.wenjieyang.autotestapplication.controller;
 
 import emerson.wenjieyang.autotestapplication.pojo.Response;
 import emerson.wenjieyang.autotestapplication.service.CleanDpiService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
+@Tag(name = "设备DPI清理接口")
 public class CleanDpiController {
 
     @Autowired
@@ -25,6 +28,7 @@ public class CleanDpiController {
      * @return
      */
     @GetMapping("/cleanDpiForSecurityAudit")
+    @Operation(summary = "设备DPI清理接口")
     public Response<Object> cleanDpi() {
         return cleanDpiService.cleanDpiForSecurityAudit() ;
     }

@@ -1,5 +1,6 @@
 package emerson.wenjieyang.autotestapplication.enums;
 
+
 /**
  * @className: ResultEnum
  * @author: WenjieYang
@@ -14,9 +15,11 @@ public enum  Result {
     FILED(444,"失败");
 
     // 状态返回值
+
     private final int code ;
 
     // 请求返回message ;
+
     private final String msg ;
 
 

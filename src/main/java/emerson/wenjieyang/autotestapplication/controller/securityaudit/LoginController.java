@@ -4,6 +4,8 @@ import emerson.wenjieyang.autotestapplication.config.securityaudit.FilePathConfi
 import emerson.wenjieyang.autotestapplication.pojo.Response;
 import emerson.wenjieyang.autotestapplication.service.securityaudit.LoginService;
 import emerson.wenjieyang.autotestapplication.util.RespondUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/securityaudit")
+@Tag(name = "登录接口")
 public class LoginController {
 
     @Autowired
@@ -35,6 +38,7 @@ public class LoginController {
      * @return
      */
     @GetMapping("/logintest")
+    @Operation(summary = "系统登录测试")
     public Response<Object> logintest() {
         // 测试用例地址
         String loginCasePath = filePathConfig.getLoginCasePath();
