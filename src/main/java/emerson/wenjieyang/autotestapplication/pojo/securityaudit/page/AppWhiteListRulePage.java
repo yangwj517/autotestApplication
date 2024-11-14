@@ -246,7 +246,7 @@ public class AppWhiteListRulePage {
         for (int i = 0; i <list.size() ; i++) {
             clickAddButton();
             // 填写表格内容
-            setList(list.get(i),i,driver);
+            setList1(list.get(i),i,driver);
         }
         return ruleTestCase;
     }
