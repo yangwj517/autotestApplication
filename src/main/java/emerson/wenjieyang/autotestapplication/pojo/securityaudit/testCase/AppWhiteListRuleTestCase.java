@@ -2,6 +2,7 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
 
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.page.Inf;
 import lombok.Data;
+import lombok.Data;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.Ftp;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.ProFinetIo;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
