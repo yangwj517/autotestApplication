@@ -2,6 +2,8 @@ package emerson.wenjieyang.autotestapplication.controller.securityaudit;
 
 import emerson.wenjieyang.autotestapplication.pojo.Response;
 import emerson.wenjieyang.autotestapplication.service.securityaudit.RuleManageService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/security/ruleManage")
+@Tag(name = "规则管理接口")
 public class RuleManageController {
 
 
@@ -30,6 +33,7 @@ public class RuleManageController {
      * @return
      */
     @GetMapping("/addNewAppWhiteListRules")
+    @Operation(summary = "手动 应用协议白名单规则添加")
     public Response<Object> addNewWhiteListRule(){
         return ruleManageService.addNewAppWhiteListRule() ;
     }
