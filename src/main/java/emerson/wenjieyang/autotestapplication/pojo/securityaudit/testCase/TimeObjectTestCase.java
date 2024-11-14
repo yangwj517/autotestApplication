@@ -1,6 +1,7 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
 
 import com.google.gson.Gson;
+import lombok.Data;
 import org.openqa.selenium.json.TypeToken;
 
 import java.io.FileReader;
@@ -19,6 +20,7 @@ import java.util.List;
  * @description: TODO：时间对象测试用例实体类
  */
 
+@Data
 public class TimeObjectTestCase {
 
     // 时间表类型  -- 循环 、单次

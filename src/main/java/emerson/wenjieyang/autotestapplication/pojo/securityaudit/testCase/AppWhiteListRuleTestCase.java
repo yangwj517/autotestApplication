@@ -1,5 +1,7 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
 
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.page.Inf;
+import lombok.Data;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.Ftp;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.ProFinetIo;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
@@ -14,6 +16,7 @@ import java.util.List;
  * @description: 应用白名单实体类
  */
 
+@Data
 public class AppWhiteListRuleTestCase {
 
     // 规则名

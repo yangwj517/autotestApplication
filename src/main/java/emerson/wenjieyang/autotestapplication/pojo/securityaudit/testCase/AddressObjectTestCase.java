@@ -2,6 +2,7 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import lombok.Data;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import java.util.List;
  * @description: FIXME : 实际上 不是每一个地址项目都有 名称和描述的 ，做出修改
  */
 
+@Data
 public class AddressObjectTestCase {
     // 名称
     private String name ;

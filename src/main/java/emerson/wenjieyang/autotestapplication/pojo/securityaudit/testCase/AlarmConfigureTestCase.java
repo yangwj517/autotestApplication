@@ -1,5 +1,7 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
 
+import lombok.Data;
+
 /**
  * @className: AlarmConfigureTestCase
  * @author: WenjieYang
@@ -8,7 +10,7 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
  * @description: 告警配置测试用例
  */
 
-
+@Data
 public class AlarmConfigureTestCase {
 
     // 规则名称

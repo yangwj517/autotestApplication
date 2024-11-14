@@ -2,6 +2,7 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import lombok.Data;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.util.List;
  * @description: TODO：入侵检测检测策略
  */
 
+@Data
 public class DetectionPolicyTestCase {
 
     // 名称

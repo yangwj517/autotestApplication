@@ -1,5 +1,7 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
 
+import lombok.Data;
+
 /**
  * @className: ProtocolAuditTestCase
  * @author: WenjieYang
@@ -8,6 +10,7 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
  * @description: 协议审计测试用例
  */
 
+@Data
 public class ProtocolAuditTestCase {
 
     // 协议名称
