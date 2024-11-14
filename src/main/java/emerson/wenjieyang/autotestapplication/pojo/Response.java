@@ -1,5 +1,6 @@
 package emerson.wenjieyang.autotestapplication.pojo;
 
+
 /**
  * @BelongsProject : autotestApplication
  * @BelongsPackage : emerson.wenjieyang.autotestapplication.pojo
@@ -11,8 +12,11 @@ package emerson.wenjieyang.autotestapplication.pojo;
 
 
 public class Response <T> {
+
     private int code ;
+
     private String msg ;
+
     private T data ;
 
     public Response(int code, String msg, T data) {
