@@ -1,6 +1,8 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
 
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
+import lombok.Data;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +23,26 @@ public class ProFinetIo implements ProtocolBaseInterface {
     @Override
     public Map<String, Object> getProperties() {
         return properties;
+    }
+
+    @Override
+    public String getInterfaceId() {
+        return (String) properties.get("interfaceId");
+    }
+
+    @Override
+    public String getActionCode() {
+        return (String) properties.get("");
+    }
+
+    @Override
+    public String getPartType() {
+        return (String) properties.get("partType");
+    }
+
+    @Override
+    public String getDesc() {
+        return (String) properties.get("desc");
     }
 
     public void setProperties(String k , Object v){

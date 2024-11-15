@@ -15,4 +15,11 @@ public interface ProtocolBaseInterface {
     // 属性存储集合
     Map<String,Object> getProperties();
 
+    String getInterfaceId();
+
+    String getActionCode();
+
+    String getPartType();
+
+    String getDesc();
 }

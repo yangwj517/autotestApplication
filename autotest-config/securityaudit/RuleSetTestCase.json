@@ -1,43 +1,50 @@
 [
     {
-        "name":">><<<>>",
-        "desc":"testCase1",
-        "selectInf":"溢出",
-        "type":"",
-        "expectedResult":true
+        "ruleName": "FTP测试",
+        "ruleDesc": "测试FTP协议",
+        "sourceIp": "192.168.1.1",
+        "targetIp": "192.168.1.2",
+        "protocolName": "FTP",
+        "protocolList": [
+            {
+                "type": "FTP",
+                "selectInf": "",
+                "command": "GET",
+                "description": "获取文件"
+            }
+        ],
+        "expectedResult": true
     },
     {
-        "name":"testCase2",
-        "desc":"testCase2",
-        "selectInf":"",
-        "type":"协议类型",
-        "expectedResult":true
+        "ruleName": "HTTP测试",
+        "ruleDesc": "测试HTTP协议",
+        "sourceIp": "192.168.1.1",
+        "targetIp": "192.168.1.2",
+        "protocolName": "HTTP",
+        "protocolList": [
+            {
+                "type": "HTTP",
+                "selectInf": "",
+                "method": "GET",
+                "url": "/index.html"
+            }
+        ],
+        "expectedResult": true
     },
     {
-        "name":"testCase3",
-        "desc":"testCase3",
-        "selectInf":"",
-        "type":"安全类型",
-        "expectedResult":true
-    },{
-        "name":"testCase4",
-        "desc":"testCase4",
-        "selectInf":"",
-        "type":"系统",
-        "expectedResult":true
-    },
-    {
-        "name":"testCase5",
-        "desc":"testCase5",
-        "selectInf":"危险等级",
-        "type":"",
-        "expectedResult":true
-    },
-    {
-        "name":"testCase6",
-        "desc":"testCase6",
-        "selectInf":"",
-        "type":"危险等级",
-        "expectedResult":true
+        "ruleName": "HTTPS测试",
+        "ruleDesc": "测试HTTPS协议",
+        "sourceIp": "192.168.1.1",
+        "targetIp": "192.168.1.2",
+        "protocolName": "HTTPS",
+        "protocolList": [
+            {
+                "type": "HTTPS",
+                "selectInf": "",
+                "method": "POST",
+                "url": "/api/login"
+            }
+        ],
+        "expectedResult": true
     }
 ]
