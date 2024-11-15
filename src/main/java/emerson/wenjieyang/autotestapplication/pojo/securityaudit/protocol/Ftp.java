@@ -28,6 +28,26 @@ public class Ftp implements ProtocolBaseInterface {
         return properties;
     }
 
+    @Override
+    public String getInterfaceId() {
+        return (String) properties.get("interfaceId");
+    }
+
+    @Override
+    public String getActionCode() {
+        return (String) properties.get("actionCode");
+    }
+
+    @Override
+    public String getPartType() {
+        return (String) properties.get("partType");
+    }
+
+    @Override
+    public String getDesc() {
+        return (String) properties.get("desc");
+    }
+
     public void setProperties(String k , Object v) {
         properties.put(k , v);
     }

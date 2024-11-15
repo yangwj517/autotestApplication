@@ -32,7 +32,7 @@ public class ProFinetIo implements ProtocolBaseInterface {
 
     @Override
     public String getActionCode() {
-        return (String) properties.get("");
+        return (String) properties.get("actionCode");
     }
 
     @Override

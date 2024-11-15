@@ -1,5 +1,7 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import emerson.wenjieyang.autotestapplication.util.GetTestcaseListUtil;
 import lombok.Data;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.Ftp;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.ProFinetIo;

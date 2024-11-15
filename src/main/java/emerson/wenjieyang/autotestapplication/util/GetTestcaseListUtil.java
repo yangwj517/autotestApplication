@@ -1,20 +1,16 @@
 package emerson.wenjieyang.autotestapplication.util;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.reflect.TypeToken;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.*;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.*;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase.*;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,67 +22,68 @@ import java.util.List;
  * @Version: 1.0
  * @description: 通过此方法返回所有的测试用例
  */
-@Slf4j
 public class GetTestcaseListUtil {
 
-    private static final Gson GSON = new Gson();
-    private static final Gson PROTOCOL_GSON = new GsonBuilder()
-            .registerTypeAdapter(ProtocolBaseInterface.class, new ProtocolItemDeserializer())
-            .create();
+    private static final Logger logger = LoggerFactory.getLogger(GetTestcaseListUtil.class);
 
-    /**
-     * 通用方法，用于从JSON文件中读取测试用例列表
-     *
-     * @param filePath 文件路径
-     * @param type     泛型类型
-     * @param <T>      泛型类型参数
-     * @return 测试用例列表
-     */
-    private static <T> List<T> readTestCases(String filePath, Type type) {
-        try (FileReader reader = new FileReader(filePath)) {
-            return GSON.fromJson(reader, type);
+    // 泛型方法，用于读取不同类型的测试用例
+    public static <T> List<T> getTestCaseList(String filePath, Type type) {
+        List<T> testCaseList = new ArrayList<>();
+        Gson gson = new Gson();
+        try (Reader reader = new FileReader(filePath)) {
+            testCaseList = gson.fromJson(reader, type);
         } catch (IOException e) {
-            log.error("测试用例文件加载失败: {}", e.getMessage(), e);
-            return new ArrayList<>();
+            logger.error("测试用例文件加载失败： {}", e.getMessage(), e);
         }
+        return testCaseList;
     }
 
+    // 安全审计==》入侵检测 ==》 时间对象测试用例
     public static List<TimeObjectTestCase> getTimeObjectTestCaseList(String filePath) {
         Type type = new TypeToken<List<TimeObjectTestCase>>() {}.getType();
-        return readTestCases(filePath, type);
+        return getTestCaseList(filePath, type);
     }
 
+    // 安全审计==》入侵检测 ==》 地址对象测试用例
     public static List<AddressObjectTestCase> getAddressObjectTestCaseList(String filePath) {
         Type type = new TypeToken<List<AddressObjectTestCase>>() {}.getType();
-        return readTestCases(filePath, type);
+        return getTestCaseList(filePath, type);
     }
 
+    // 安全审计==》入侵检测 ==》 规则集测试用例
     public static List<RuleSetTestCase> getRuleSetTestCaseList(String filePath) {
         Type type = new TypeToken<List<RuleSetTestCase>>() {}.getType();
-        return readTestCases(filePath, type);
+        return getTestCaseList(filePath, type);
     }
 
+    // 安全审计==》入侵检测 ==》 检测策略测试用例
     public static List<DetectionPolicyTestCase> getDetectionPolicyTestCaseList(String filePath) {
         Type type = new TypeToken<List<DetectionPolicyTestCase>>() {}.getType();
-        return readTestCases(filePath, type);
+        return getTestCaseList(filePath, type);
     }
 
+    // 安全审计==》安全事件==》事件告警配置测试用例
     public static List<AlarmConfigureTestCase> getAlarmConfigureTestCaseList(String filePath) {
         Type type = new TypeToken<List<AlarmConfigureTestCase>>() {}.getType();
-        return readTestCases(filePath, type);
+        return getTestCaseList(filePath, type);
     }
 
-    public static List<AppWhiteListRuleTestCase> getAppWhiteListRuleTestCaseList(String filePath) {
+    // 安全审计==》规则管理==》白名单规则==》应用协议白名单
+    public static List<AppWhiteListRuleTestCase> getAppWhiteListRuleTestCaseList(String filePath) throws IOException {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(ProtocolBaseInterface.class, new ProtocolItemDeserializer());
+        Gson gson = gsonBuilder.create();
         Type type = new TypeToken<List<AppWhiteListRuleTestCase>>() {}.getType();
-        try (FileReader reader = new FileReader(filePath)) {
-            return PROTOCOL_GSON.fromJson(reader, type);
+        try (Reader reader = new FileReader(filePath)) {
+            return gson.fromJson(reader, type);
         } catch (IOException e) {
-            log.error("测试用例文件加载失败: {}", e.getMessage(), e);
-            return new ArrayList<>();
+            logger.error("测试用例文件加载失败： {}", e.getMessage(), e);
+            throw e;
         }
     }
 
-    private static class ProtocolItemDeserializer implements JsonDeserializer<ProtocolBaseInterface> {
+    public static class ProtocolItemDeserializer implements JsonDeserializer<ProtocolBaseInterface> {
+
         @Override
         public ProtocolBaseInterface deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext context) throws JsonParseException {
             JsonObject jsonObject = jsonElement.getAsJsonObject();
@@ -142,7 +139,7 @@ public class GetTestcaseListUtil {
                 case "trdp":
                     return context.deserialize(jsonObject, Trdp.class);
                 default:
-                    return null;
+                    throw new JsonParseException("Unknown protocol type: " + protocolType);
             }
         }
     }

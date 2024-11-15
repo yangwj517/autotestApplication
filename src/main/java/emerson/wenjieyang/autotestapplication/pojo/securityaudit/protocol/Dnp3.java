@@ -42,6 +42,25 @@ public class Dnp3  implements ProtocolBaseInterface {
         properties.put(k,v);
     }
     @Override
+    public String getInterfaceId() {
+        return (String) properties.get("interfaceId");
+    }
+
+    @Override
+    public String getActionCode() {
+        return (String) properties.get("actionCode");
+    }
+
+    @Override
+    public String getPartType() {
+        return (String) properties.get("partType");
+    }
+
+    @Override
+    public String getDesc() {
+        return (String) properties.get("desc");
+    }
+    @Override
     public String toString() {
         return "Dnp3协议 {" +
                 "协议类型='" + properties.get("protocolType") + '\'' +
