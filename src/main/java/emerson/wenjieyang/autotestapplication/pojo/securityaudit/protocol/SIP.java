@@ -1,5 +1,10 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
 
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @className: SIP
  * @author: WenjieYang
@@ -8,18 +13,23 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
  * @description: 协议规则SIP
  */
 
-public class SIP {
+public class SIP implements ProtocolBaseInterface {
 
-    // 方法名
-    private String funName ;
-    // 描述
-    private String desc ;
+    private Map<String,Object> properties = new HashMap<String,Object>();
 
-    public SIP(String funName, String desc) {
-        this.funName = funName;
-        this.desc = desc;
+
+    public SIP(String protocolType , String funName, String desc) {
+        properties.put("protocolType", protocolType);
+        properties.put("funName", funName); // 方法名
+        properties.put("desc", desc); // 描述
     }
 
-    public SIP() {
+    @Override
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(String k , Object v){
+        properties.put(k,v);
     }
 }

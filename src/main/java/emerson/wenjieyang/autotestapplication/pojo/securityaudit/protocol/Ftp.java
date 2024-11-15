@@ -1,5 +1,10 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
 
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @className: Ftp
  * @author: WenjieYang
@@ -8,16 +13,22 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
  * @description: 协议规则
  */
 
-public class Ftp {
+public class Ftp implements ProtocolBaseInterface {
 
-    // 命令
-    private String order ;
+    private Map<String , Object> properties = new HashMap<String , Object>();
 
-    // 描述
-    private String desc ;
+    public Ftp(String protocolType , String order, String desc) {
+        properties.put("protocolType", protocolType);
+        properties.put("order", order);// 命令
+        properties.put("desc", desc);// 描述
+    }
 
-    public Ftp(String order, String desc) {
-        this.order = order;
-        this.desc = desc;
+    @Override
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(String k , Object v) {
+        properties.put(k , v);
     }
 }

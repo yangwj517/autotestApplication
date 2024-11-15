@@ -1,5 +1,11 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
 
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @className: Mms
  * @author: WenjieYang
@@ -8,20 +14,25 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
  * @description: 协议规则 MMS
  */
 
-public class Mms {
+public class Mms implements ProtocolBaseInterface {
 
-    // 类型
-    private String type ;
+    private Map<String , Object> properties = new HashMap<String , Object>();
 
-    // 服务
-    private String serve ;
 
-    // 描述
-    private String desc ;
 
-    public Mms(String type, String serve, String desc) {
-        this.type = type;
-        this.serve = serve;
-        this.desc = desc;
+    public Mms(String protocolType , String type, String serve, String desc) {
+       properties.put("protocolType", protocolType);
+       properties.put("type", type);// 类型
+       properties.put("serve", serve); // 服务
+       properties.put("desc", desc);// 描述
+    }
+
+    @Override
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(String k , Object v ){
+        properties.put(k , v);
     }
 }

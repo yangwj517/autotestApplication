@@ -5,23 +5,17 @@ import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseIn
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @className: OpcUaTcp
- * @author: WenjieYang
- * @date: 2024/11/14 14:31
- * @Version: 1.0
- * @description: 协议规则OPCUA-TCP
- */
-
-public class OpcUaTcp implements ProtocolBaseInterface {
+public class ProFinetIo implements ProtocolBaseInterface {
 
     private Map<String , Object> properties = new HashMap<String , Object>();
 
-    public OpcUaTcp(String protocolType , String serveCode, String desc) {
+    // 构造函数
+    public ProFinetIo(String protocolType , String interfaceId, String actionCode, String partType, String desc) {
         properties.put("protocolType", protocolType);
-        properties.put("serveCode", serveCode);// 服务码
-        properties.put("desc", desc); // 描述
-
+        properties.put("interfaceId", interfaceId);// 接口ID
+        properties.put("actionCode", actionCode);// 操作码
+        properties.put("partType", partType);// 块类型
+        properties.put("desc", desc);// 描述
     }
 
     @Override
@@ -32,4 +26,5 @@ public class OpcUaTcp implements ProtocolBaseInterface {
     public void setProperties(String k , Object v){
         properties.put(k , v);
     }
+
 }

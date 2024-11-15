@@ -1,5 +1,6 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.page;
 
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.ProFinetIo;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase.AppWhiteListRuleTestCase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -79,7 +80,7 @@ public class AppWhiteListRulePage {
     /**
      * 此方法不仅需要接受用例，同时要知道这是第几个用例。还需要使用driver找到控件
      */
-    private void setList1(Inf inf , int index,WebDriver driver) {
+    private void setList1(ProFinetIo proFinetIo, int index, WebDriver driver) {
         try {
             TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
@@ -91,9 +92,9 @@ public class AppWhiteListRulePage {
         // 接口ID
         WebElement interfaceID = driver.findElement(By.cssSelector("select[data-idx='" + index + "_0']"));
         Select select = new Select(interfaceID);
-        if(!inf.getInterfaceId().equals("any")&&!inf.getInterfaceId().isEmpty()){
+        if(!proFinetIo.getInterfaceId().equals("any")&&!proFinetIo.getInterfaceId().isEmpty()){
             try{
-                select.selectByVisibleText(inf.getInterfaceId());
+                select.selectByVisibleText(proFinetIo.getInterfaceId());
             }catch (NoSuchElementException e){
             }
         }
@@ -102,9 +103,9 @@ public class AppWhiteListRulePage {
         // 操作码
         WebElement actionCode = driver.findElement(By.cssSelector("select[data-idx='" + index + "_1']"));
         Select select1 = new Select(actionCode);
-        if(!inf.getActionCode().equals("any")&&!inf.getActionCode().isEmpty()){
+        if(!proFinetIo.getActionCode().equals("any")&&!proFinetIo.getActionCode().isEmpty()){
             try{
-                select1.selectByVisibleText(inf.getActionCode());
+                select1.selectByVisibleText(proFinetIo.getActionCode());
             }catch (NoSuchElementException e){}
         }
 
@@ -112,19 +113,19 @@ public class AppWhiteListRulePage {
         // 块类型
         WebElement partType = driver.findElement(By.cssSelector("select[data-idx='" + index + "_2']"));
         Select select2 = new Select(partType);
-        if(!inf.getPartType().equals("any")&&!inf.getPartType().isEmpty()){
+        if(!proFinetIo.getPartType().equals("any")&&!proFinetIo.getPartType().isEmpty()){
             try{
-                select2.selectByVisibleText(inf.getPartType());
+                select2.selectByVisibleText(proFinetIo.getPartType());
             }catch (NoSuchElementException e){}
         }
 
 
         // 描述
         WebElement desc = driver.findElement(By.cssSelector("select[data-idx='" + index + "_3']"));
-        desc.sendKeys(inf.getDesc());
+        desc.sendKeys(proFinetIo.getDesc());
 
     } // PROFINET-IO
-    private void setList2(Inf inf , int index,WebDriver driver) {
+    private void setList2(ProFinetIo proFinetIo, int index, WebDriver driver) {
         try {
             TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
@@ -136,9 +137,9 @@ public class AppWhiteListRulePage {
         // 接口ID
         WebElement interfaceID = driver.findElement(By.cssSelector("select[data-idx='" + index + "_0']"));
         Select select = new Select(interfaceID);
-        if(!inf.getInterfaceId().equals("any")&&!inf.getInterfaceId().isEmpty()){
+        if(!proFinetIo.getInterfaceId().equals("any")&&!proFinetIo.getInterfaceId().isEmpty()){
             try{
-                select.selectByVisibleText(inf.getInterfaceId());
+                select.selectByVisibleText(proFinetIo.getInterfaceId());
             }catch (NoSuchElementException e){
             }
         }
@@ -147,9 +148,9 @@ public class AppWhiteListRulePage {
         // 操作码
         WebElement actionCode = driver.findElement(By.cssSelector("select[data-idx='" + index + "_1']"));
         Select select1 = new Select(actionCode);
-        if(!inf.getActionCode().equals("any")&&!inf.getActionCode().isEmpty()){
+        if(!proFinetIo.getActionCode().equals("any")&&!proFinetIo.getActionCode().isEmpty()){
             try{
-                select1.selectByVisibleText(inf.getActionCode());
+                select1.selectByVisibleText(proFinetIo.getActionCode());
             }catch (NoSuchElementException e){}
         }
 
@@ -157,19 +158,21 @@ public class AppWhiteListRulePage {
         // 块类型
         WebElement partType = driver.findElement(By.cssSelector("select[data-idx='" + index + "_2']"));
         Select select2 = new Select(partType);
-        if(!inf.getPartType().equals("any")&&!inf.getPartType().isEmpty()){
+        if(!proFinetIo.getPartType().equals("any")&&!proFinetIo.getPartType().isEmpty()){
             try{
-                select2.selectByVisibleText(inf.getPartType());
+                select2.selectByVisibleText(proFinetIo.getPartType());
             }catch (NoSuchElementException e){}
         }
 
 
         // 描述
         WebElement desc = driver.findElement(By.cssSelector("select[data-idx='" + index + "_3']"));
-        desc.sendKeys(inf.getDesc());
+        desc.sendKeys(proFinetIo.getDesc());
 
     } // Modbus-TCP
-    private void setList3(Inf inf , int index,WebDriver driver) {
+
+
+    private void setList3(ProFinetIo proFinetIo, int index, WebDriver driver) {
         try {
             TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
@@ -181,9 +184,9 @@ public class AppWhiteListRulePage {
         // 接口ID
         WebElement interfaceID = driver.findElement(By.cssSelector("select[data-idx='" + index + "_0']"));
         Select select = new Select(interfaceID);
-        if(!inf.getInterfaceId().equals("any")&&!inf.getInterfaceId().isEmpty()){
+        if(!proFinetIo.getInterfaceId().equals("any")&&!proFinetIo.getInterfaceId().isEmpty()){
             try{
-                select.selectByVisibleText(inf.getInterfaceId());
+                select.selectByVisibleText(proFinetIo.getInterfaceId());
             }catch (NoSuchElementException e){
             }
         }
@@ -192,9 +195,9 @@ public class AppWhiteListRulePage {
         // 操作码
         WebElement actionCode = driver.findElement(By.cssSelector("select[data-idx='" + index + "_1']"));
         Select select1 = new Select(actionCode);
-        if(!inf.getActionCode().equals("any")&&!inf.getActionCode().isEmpty()){
+        if(!proFinetIo.getActionCode().equals("any")&&!proFinetIo.getActionCode().isEmpty()){
             try{
-                select1.selectByVisibleText(inf.getActionCode());
+                select1.selectByVisibleText(proFinetIo.getActionCode());
             }catch (NoSuchElementException e){}
         }
 
@@ -202,16 +205,16 @@ public class AppWhiteListRulePage {
         // 块类型
         WebElement partType = driver.findElement(By.cssSelector("select[data-idx='" + index + "_2']"));
         Select select2 = new Select(partType);
-        if(!inf.getPartType().equals("any")&&!inf.getPartType().isEmpty()){
+        if(!proFinetIo.getPartType().equals("any")&&!proFinetIo.getPartType().isEmpty()){
             try{
-                select2.selectByVisibleText(inf.getPartType());
+                select2.selectByVisibleText(proFinetIo.getPartType());
             }catch (NoSuchElementException e){}
         }
 
 
         // 描述
         WebElement desc = driver.findElement(By.cssSelector("select[data-idx='" + index + "_3']"));
-        desc.sendKeys(inf.getDesc());
+        desc.sendKeys(proFinetIo.getDesc());
 
     } // Modbus-TCP
 
@@ -287,7 +290,7 @@ public class AppWhiteListRulePage {
         enterSourceIpInput(ruleTestCase.getSourceIp());
         enterTargetIpInput(ruleTestCase.getTargetIp());
         selectProtocol(ruleTestCase.getProtocolName());
-        List<Inf> list = ruleTestCase.getList();
+        List<ProFinetIo> list = ruleTestCase.getList();
         for (int i = 0; i <list.size() ; i++) {
             clickAddButton();
             // 填写表格内容

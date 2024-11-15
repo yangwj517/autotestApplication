@@ -1,5 +1,10 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
 
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @className: OpcDa
  * @author: WenjieYang
@@ -8,31 +13,21 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
  * @description: 协议规则 OPCDA
  */
 
-public class OpcDa {
-    // uuid
-    private String uuid ;
+public class OpcDa implements ProtocolBaseInterface {
+    private Map<String,Object> properties = new HashMap<>();
 
-    // 操作码
-    private String actionCode ;
+    public OpcDa(String protocolType , String uuid, String actionCode, String type, String name, String value, String desc) {
+        properties.put("protocolType",protocolType);
+        properties.put("uuid",uuid);// uuid
+        properties.put("actionCode",actionCode);// 操作码
+        properties.put("type",type);// 项类型
+        properties.put("name",name);// 项名
+        properties.put("value",value);// 项值
+        properties.put("desc",desc);// 描述
+    }
 
-    // 项类型
-    private String type ;
-
-    // 项名
-    private String name ;
-
-    // 项值
-    private String value ;
-
-    // 描述
-    private String desc ;
-
-    public OpcDa(String uuid, String actionCode, String type, String name, String value, String desc) {
-        this.uuid = uuid;
-        this.actionCode = actionCode;
-        this.type = type;
-        this.name = name;
-        this.value = value;
-        this.desc = desc;
+    @Override
+    public Map<String, Object> getProperties() {
+        return Map.of();
     }
 }

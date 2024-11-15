@@ -1,5 +1,10 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
 
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @className: CoAp
  * @author: WenjieYang
@@ -8,19 +13,23 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
  * @description: 协议规则CoAp
  */
 
-public class CoAp {
-    // 消息类型
-    private String msgType ;
+public class CoAp implements ProtocolBaseInterface {
 
-    // 功能码
-    private String funCode ;
+    private Map<String,Object> properties = new HashMap<String,Object>();
 
-    // 描述
-    private String desc ;
+    public CoAp(String protocolType , String msgType, String funCode, String desc) {
+        properties.put("protocolType",protocolType);
+        properties.put("msgType",msgType);// 消息类型
+        properties.put("funCode",funCode);// 功能码
+        properties.put("desc",desc);// 描述
+    }
 
-    public CoAp(String msgType, String funCode, String desc) {
-        this.msgType = msgType;
-        this.funCode = funCode;
-        this.desc = desc;
+    @Override
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(String k , Object v) {
+        properties.put(k,v);
     }
 }

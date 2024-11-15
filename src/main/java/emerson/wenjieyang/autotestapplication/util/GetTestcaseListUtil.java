@@ -1,6 +1,8 @@
 package emerson.wenjieyang.autotestapplication.util;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.*;
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase.*;
 import org.openqa.selenium.json.TypeToken;
 
@@ -99,17 +101,73 @@ public class GetTestcaseListUtil {
     }
 
     //安全审计  ==》 规则管理 ==》白名单规则 ==》应用协议白名单
-    public static List<AppWhiteListRuleTestCase> getAppWhiteListRuleTestCaseList(String testCaseFilePath){
-        List<AppWhiteListRuleTestCase> appWhiteListRuleTestCaseList ;
-        appWhiteListRuleTestCaseList = new ArrayList<>();
-        Gson gson = new Gson();
-        try(Reader r = new FileReader(testCaseFilePath)){
-            Type type = new com.google.common.reflect.TypeToken<List<AppWhiteListRuleTestCase>>() {}.getType();
-            appWhiteListRuleTestCaseList = gson.fromJson(r,type);
-        }catch (IOException e){
-            System.out.println("测试用例文件加载失败： " + e.getMessage());
+    public static List<AppWhiteListRuleTestCase> getAppWhiteListRuleTestCaseList(String testCaseFilePath) throws IOException {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(ProtocolBaseInterface.class,new ProtocolItemDeserializer());
+        Gson gson = gsonBuilder.create();
+        Type type = new TypeToken<List<AppWhiteListRuleTestCase>>() {}.getType();
+        return gson.fromJson(new FileReader(testCaseFilePath),type);
+    }
+
+    private static class ProtocolItemDeserializer implements JsonDeserializer<ProtocolBaseInterface>{
+
+        @Override
+        public ProtocolBaseInterface deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+            JsonObject jsonObject = jsonElement.getAsJsonObject();
+            String protocolType = jsonObject.get("protocol").getAsString();
+
+            if("ftp".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, Ftp.class);
+            }else if("bacnet".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, BACnet.class);
+            }else if("coap".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, CoAp.class);
+            }else if("dnp3".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, Dnp3.class);
+            }else if("egd".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, Egd.class);
+            }else if("enipio".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject,EnipIo.class);
+            }else if("eniptcp".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, EnipTcp.class);
+            }else if("enipudp".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject,EnipUdp.class);
+            }else if("finstcp".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, FinsTcp.class);
+            }else if("focas".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, Focas.class);
+            }else if("hexagon".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, Hexagon.class);
+            }else if("iec104".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, Iec104.class);
+            }else if("mms".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, Mms.class);
+            }else if("modbustcp".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject,ModbusTcp.class);
+            }else if("mqtt".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, Mqtt.class);
+            }else if("opcda".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject,OpcDa.class);
+            }else if("opcuatcp".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject,OpcUaTcp.class);
+            }else if("oracle".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, Oracle.class);
+            }else if("profinetio".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject,ProFinetIo.class);
+            }else if("s7".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, S7.class);
+            }else if("s7plus".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, S7Plus.class);
+            }else if("sip".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject,SIP.class);
+            }else if("snmp".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject,SNMP.class);
+            }else if("trdp".equals(protocolType)){
+                return jsonDeserializationContext.deserialize(jsonObject, Trdp.class);
+            }else {
+                return null ;
+            }
         }
-        return appWhiteListRuleTestCaseList ;
     }
 
 }

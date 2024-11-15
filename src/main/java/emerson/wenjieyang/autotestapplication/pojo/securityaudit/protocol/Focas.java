@@ -1,5 +1,10 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
 
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @className: Focas
  * @author: WenjieYang
@@ -8,32 +13,27 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
  * @description: 协议规则 FOCAS
  */
 
-public class Focas {
+public class Focas implements ProtocolBaseInterface {
 
-    // 命令
-    private String order ;
+    private Map<String,Object> properties = new HashMap<String,Object>();
 
-    // 类型
-    private String type ;
 
-    // 按键
-    private String keyBroad ;
+    public Focas(String protocolType , String order, String type, String keyBroad, String funCode, String sunFunCode, String desc) {
+        properties.put("protocolType", protocolType);
+        properties.put("order", order); // 命令
+        properties.put("type", type);// 类型
+        properties.put("keyBroad", keyBroad);// 按键
+        properties.put("funCode", funCode);// 功能码
+        properties.put("sunFunCode", sunFunCode); // 子功能码
+        properties.put("desc", desc);// 描述
+    }
 
-    // 功能码
-    private String funCode ;
+    @Override
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
 
-    // 子功能码
-    private String sunFunCode ;
-
-    // 描述
-    private String Desc ;
-
-    public Focas(String order, String type, String keyBroad, String funCode, String sunFunCode, String desc) {
-        this.order = order;
-        this.type = type;
-        this.keyBroad = keyBroad;
-        this.funCode = funCode;
-        this.sunFunCode = sunFunCode;
-        Desc = desc;
+    public void setProperties(String k , Object v ) {
+        properties.put(k,v);
     }
 }

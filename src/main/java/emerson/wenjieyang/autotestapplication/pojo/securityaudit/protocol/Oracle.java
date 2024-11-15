@@ -1,5 +1,10 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
 
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @className: Oracle
  * @author: WenjieYang
@@ -8,20 +13,23 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
  * @description: 协议规则ORACLE
  */
 
-public class Oracle {
+public class Oracle implements ProtocolBaseInterface {
 
-    // 操作指令
-    private String order ;
+    private Map<String,Object> properties = new HashMap<String,Object>();
 
-    // 用户名
-    private String  name ;
+    public Oracle(String protocolType , String order, String name, String desc) {
+        properties.put("protocolType", protocolType);
+        properties.put("order", order);// 操作指令
+        properties.put("name", name);// 用户名
+        properties.put("desc", desc); // 描述
+    }
 
-    // 描述
-    private String desc ;
+    @Override
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
 
-    public Oracle(String order, String name, String desc) {
-        this.order = order;
-        this.name = name;
-        this.desc = desc;
+    public void setProperties(String k ,Object v){
+        properties.put(k,v);
     }
 }

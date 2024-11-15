@@ -1,5 +1,10 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
 
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @className: Egd
  * @author: WenjieYang
@@ -8,7 +13,8 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
  * @description: 协议规则EGD
  */
 
-public class Egd {
+public class Egd implements ProtocolBaseInterface {
+    private Map<String ,Object> properties = new HashMap<String ,Object>() ;
 
     // 状态码
     private String statusCode ;
@@ -16,8 +22,14 @@ public class Egd {
     // 描述
     private String desc ;
 
-    public Egd(String statusCode, String desc) {
-        this.statusCode = statusCode;
-        this.desc = desc;
+    public Egd(String protocolType ,String statusCode, String desc) {
+        properties.put("protocolType",protocolType);
+        properties.put("statusCode",statusCode);
+        properties.put("desc",desc);
+    }
+
+    @Override
+    public Map<String, Object> getProperties() {
+        return properties;
     }
 }

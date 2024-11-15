@@ -1,5 +1,10 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
 
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @className: EnipIo
  * @author: WenjieYang
@@ -8,20 +13,24 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
  * @description: 协议规则 ENIP-IO
  */
 
-public class EnipIo {
+public class EnipIo implements ProtocolBaseInterface {
 
-    // 地址类型
-    private String addressType ;
+    Map<String,Object> properties = new HashMap<String,Object>();
 
-    // 数据类型
-    private String dataAddress ;
 
-    // 描述
-    private String desc ;
+    public EnipIo(String protocolType ,String addressType, String dataAddress, String desc) {
+        properties.put("protocolType",protocolType);
+        properties.put("addressType",addressType);// 地址类型
+        properties.put("dataAddress",dataAddress);// 数据类型
+        properties.put("desc",desc); // 描述
+    }
 
-    public EnipIo(String addressType, String dataAddress, String desc) {
-        this.addressType = addressType;
-        this.dataAddress = dataAddress;
-        this.desc = desc;
+    @Override
+    public Map<String, Object> getProperties() {
+        return properties ;
+    }
+
+    public void setProperties(String k , Object v) {
+        properties.put(k,v);
     }
 }

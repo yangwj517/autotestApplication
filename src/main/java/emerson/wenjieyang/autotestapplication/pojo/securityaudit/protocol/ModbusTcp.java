@@ -1,5 +1,10 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
 
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @className: ModbusTcp
  * @author: WenjieYang
@@ -8,18 +13,38 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
  * @description: 协议规则ModbusTcp
  */
 
-public class ModbusTcp {
-    // 从站地址
+public class ModbusTcp implements ProtocolBaseInterface {
 
-    // 功能码
+    private Map<String , Object> properties = new HashMap<String , Object>();
 
-    // 起始范围
 
-    // 结束地址范围
+    public ModbusTcp(String protocolType , String stationAddress, String funCode , String beginRange ,String endRange , String valueType, String valueRange , String desc) {
+        properties.put("protocolType", protocolType);
+        // 从站地址
+        properties.put("stationAddress", stationAddress);
+        // 功能码
+        properties.put("funCode", funCode);
+        // 起始范围
+        properties.put("beginRange", beginRange);
+        // 结束地址范围
+        properties.put("endRange", endRange);
+        // 值类型
+        properties.put("valueType", valueType);
+        // 值范围
+        properties.put("valueRange", valueRange);
+        // 描述
+        properties.put("desc", desc);
+    }
 
-    // 值类型
 
-    // 值范围
+    @Override
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
 
-    // 描述
+
+    public void setProperties(String k , Object v){
+        properties.put(k , v);
+    }
+
 }

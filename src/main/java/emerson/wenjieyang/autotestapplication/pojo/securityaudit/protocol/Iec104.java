@@ -1,5 +1,11 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
 
+import com.fasterxml.jackson.databind.util.ObjectBuffer;
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @className: Iec104
  * @author: WenjieYang
@@ -8,35 +14,29 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
  * @description: 协议规则IEC104
  */
 
-public class Iec104 {
-    // 帧类型
-    private String type ;
+public class Iec104 implements ProtocolBaseInterface {
 
-    // 类型标识
-    private String typeFlag ;
+    private Map<String , Object> properties = new HashMap<String , Object>();
 
-    // 传输原因
-    private String transferReason ;
 
-    // 公共地址
-    private String publicAddress ;
-
-    // 信息体地址
-    private String infAddress ;
-
-    // 信息体参数
-    private String infParam ;
-
-    // 描述
-    private String desc ;
-
-    public Iec104(String type, String typeFlag, String transferReason, String publicAddress, String infAddress, String infParam, String desc) {
-        this.type = type;
-        this.typeFlag = typeFlag;
-        this.transferReason = transferReason;
-        this.publicAddress = publicAddress;
-        this.infAddress = infAddress;
-        this.infParam = infParam;
-        this.desc = desc;
+    public Iec104(String protocolType , String type, String typeFlag, String transferReason, String publicAddress, String infAddress, String infParam, String desc) {
+        properties.put("protocolType", protocolType);
+        properties.put("type", type);// 帧类型
+        properties.put("typeFlag", typeFlag);// 类型标识
+        properties.put("transferReason", transferReason);// 传输原因
+        properties.put("publicAddress", publicAddress);// 公共地址
+        properties.put("infAddress", infAddress);// 信息体地址
+        properties.put("infParam", infParam); // 信息体参数
+        properties.put("desc", desc);// 描述
     }
+
+    @Override
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(String k , Object v) {
+        properties.put(k , v);
+    }
+
 }

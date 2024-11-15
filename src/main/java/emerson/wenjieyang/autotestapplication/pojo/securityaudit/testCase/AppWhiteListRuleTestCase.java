@@ -1,6 +1,8 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
 
-import emerson.wenjieyang.autotestapplication.pojo.securityaudit.page.Inf;
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.Ftp;
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.ProFinetIo;
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
 
 import java.util.List;
 
@@ -29,8 +31,8 @@ public class AppWhiteListRuleTestCase {
     // 协议名
     private String protocolName ;
 
-    // 操作码啥啥 ，看不懂是什么。
-    private List<Inf> list ;
+    // 协议规则列表
+    private List<ProtocolBaseInterface> protocolList ;
 
     // 测试信息
     private String msg ;
@@ -41,64 +43,6 @@ public class AppWhiteListRuleTestCase {
     // 测试结果
     private boolean result ;
 
-    /*
-    class Inf{
-        // 接口ID
-        private String interfaceId ;
-
-        // 操作码
-        private String actionCode ;
-
-        // 块类型
-        private String partType ;
-
-        // 描述
-        private String desc ;
-
-        // 构造函数
-        public Inf(String interfaceId, String actionCode, String partType, String desc) {
-            this.interfaceId = interfaceId;
-            this.actionCode = actionCode;
-            this.partType = partType;
-            this.desc = desc;
-        }
-        public Inf(String interfaceId, String actionCode, String partType) {
-            this.interfaceId = interfaceId;
-            this.actionCode = actionCode;
-            this.partType = partType;
-        }
-        public Inf() {
-        }
-
-        // Getter
-
-        public String getInterfaceId() {
-            return interfaceId;
-        }
-
-        public String getActionCode() {
-            return actionCode;
-        }
-
-        public String getPartType() {
-            return partType;
-        }
-
-        public String getDesc() {
-            return desc;
-        }
-
-        @Override
-        public String toString() {
-            return "Inf{" +
-                    "接口ID='" + interfaceId + '\'' +
-                    ", 操作码='" + actionCode + '\'' +
-                    ", 块类型='" + partType + '\'' +
-                    ", 描述='" + desc + '\'' +
-                    '}';
-        }
-    }
-     */
 
     public AppWhiteListRuleTestCase() {
     }
@@ -131,17 +75,23 @@ public class AppWhiteListRuleTestCase {
         this.msg = msg;
     }
 
-    public List<Inf> getList() {
-        return list;
+    public List<ProtocolBaseInterface> getProtocolList() {
+        return protocolList;
     }
 
-    public AppWhiteListRuleTestCase(String ruleName, String ruleDesc, String sourceIp, String targetIp, String protocolName, List<Inf> list, boolean expectedResult) {
+    public void setProtocolList(List<ProtocolBaseInterface> protocolList) {
+        this.protocolList = protocolList;
+    }
+
+
+
+    public AppWhiteListRuleTestCase(String ruleName, String ruleDesc, String sourceIp, String targetIp, String protocolName, List<ProtocolBaseInterface> list, boolean expectedResult) {
         this.ruleName = ruleName;
         this.ruleDesc = ruleDesc;
         this.sourceIp = sourceIp;
         this.targetIp = targetIp;
         this.protocolName = protocolName;
-        this.list = list;
+        this.protocolList = list;
         this.expectedResult = expectedResult;
     }
 
@@ -154,7 +104,7 @@ public class AppWhiteListRuleTestCase {
                 ", 源IP='" + sourceIp + '\'' +
                 ", 目的IP='" + targetIp + '\'' +
                 ", 协议名称='" + protocolName + '\'' +
-                ", list=" + list +
+                ", list=" + protocolList +
                 ", 测试信息='" + msg + '\'' +
                 ", 预期结果=" + expectedResult +
                 ", 测试结果=" + result +

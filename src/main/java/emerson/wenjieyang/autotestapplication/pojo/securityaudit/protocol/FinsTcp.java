@@ -1,5 +1,10 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
 
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @className: FinsTcp
  * @author: WenjieYang
@@ -8,20 +13,25 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
  * @description: 协议规则 FinsTcp
  */
 
-public class FinsTcp {
+public class FinsTcp implements ProtocolBaseInterface {
 
-    // 功能码
-    private String funCode ;
+    private Map<String,Object> properties = new HashMap<String,Object>();
 
-    // 磁盘号
-    private String diskNum ;
 
-    // 描述
-    private String desc ;
+    public FinsTcp(String protocolType , String funCode, String diskNum, String desc) {
+        properties.put("protocolType", protocolType);
+        properties.put("funCode", funCode);// 功能码
+        properties.put("diskNum", diskNum);// 磁盘号
+        properties.put("desc", desc);  // 描述
+    }
 
-    public FinsTcp(String funCode, String diskNum, String desc) {
-        this.funCode = funCode;
-        this.diskNum = diskNum;
-        this.desc = desc;
+
+    @Override
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(String k , String v) {
+        properties.put(k,v);
     }
 }

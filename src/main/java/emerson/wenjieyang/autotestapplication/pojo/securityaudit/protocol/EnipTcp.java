@@ -1,5 +1,10 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
 
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @className: EnipTcp
  * @author: WenjieYang
@@ -8,28 +13,25 @@ package emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol;
  * @description: 协议规则 ENIP-TCP
  */
 
-public class EnipTcp {
+public class EnipTcp implements ProtocolBaseInterface {
 
-    // 指令
-    private String order ;
+    Map<String,Object> properties =  new HashMap<String, Object>();
 
-    // 地址类型
-    private String addressType ;
+    public EnipTcp(String protocolType ,String order, String addressType, String dataType, String cipDataSegment, String desc) {
+      properties.put("protocolType",protocolType);
+      properties.put("order",order);// 指令
+      properties.put("addressType",addressType);// 地址类型
+      properties.put("dataType",dataType);// 数据类型
+      properties.put("cipDataSegment",cipDataSegment);// CIP数据段
+      properties.put("desc",desc);// 描述
+    }
 
-    // 数据类型
-    private String dataType ;
+    @Override
+    public Map<String, Object> getProperties() {
+        return properties;
+    }
 
-    // CIP数据段
-    private String cipDataSegment ;
-
-    // 描述
-    private String desc ;
-
-    public EnipTcp(String order, String addressType, String dataType, String cipDataSegment, String desc) {
-        this.order = order;
-        this.addressType = addressType;
-        this.dataType = dataType;
-        this.cipDataSegment = cipDataSegment;
-        this.desc = desc;
+    public void setProperties(String k , Object v) {
+        properties.put(k,v);
     }
 }
