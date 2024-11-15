@@ -32,4 +32,32 @@ public class S7Plus implements ProtocolBaseInterface {
     public void setProperties(String k , Object v){
         properties.put(k , v);
     }
+    @Override
+    public String getInterfaceId() {
+        return (String) properties.get("interfaceId");
+    }
+
+    @Override
+    public String getActionCode() {
+        return (String) properties.get("actionCode");
+    }
+
+    @Override
+    public String getPartType() {
+        return (String) properties.get("partType");
+    }
+
+    @Override
+    public String getDesc() {
+        return (String) properties.get("desc");
+    }
+    @Override
+    public String toString() {
+        return "S7Plus协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 控制码='" + properties.get("controlCode") + '\'' +
+                ", 功能码='" + properties.get("funCode") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }

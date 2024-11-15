@@ -1,13 +1,14 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase;
 
-import emerson.wenjieyang.autotestapplication.pojo.securityaudit.page.Inf;
-import lombok.Data;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import emerson.wenjieyang.autotestapplication.util.GetTestcaseListUtil;
 import lombok.Data;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.Ftp;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.ProFinetIo;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @className: AppWhiteListRuleTestCase
@@ -21,32 +22,31 @@ import java.util.List;
 public class AppWhiteListRuleTestCase {
 
     // 规则名
-    private String ruleName ;
+    private String ruleName;
 
     // 描述
-    private String ruleDesc ;
+    private String ruleDesc;
 
     // 源ip
-    private String sourceIp ;
+    private String sourceIp;
 
     // 目的ip
-    private String targetIp ;
+    private String targetIp;
 
     // 协议名
-    private String protocolName ;
+    private String protocolName;
 
     // 协议规则列表
-    private List<ProtocolBaseInterface> protocolList ;
+    private List<ProtocolBaseInterface> protocolList;
 
     // 测试信息
-    private String msg ;
+    private String msg;
 
     // 预期结果
-    private boolean expectedResult ;
+    private boolean expectedResult;
 
     // 测试结果
-    private boolean result ;
-
+    private boolean result;
 
     public AppWhiteListRuleTestCase() {
     }
@@ -87,8 +87,6 @@ public class AppWhiteListRuleTestCase {
         this.protocolList = protocolList;
     }
 
-
-
     public AppWhiteListRuleTestCase(String ruleName, String ruleDesc, String sourceIp, String targetIp, String protocolName, List<ProtocolBaseInterface> list, boolean expectedResult) {
         this.ruleName = ruleName;
         this.ruleDesc = ruleDesc;
@@ -99,7 +97,6 @@ public class AppWhiteListRuleTestCase {
         this.expectedResult = expectedResult;
     }
 
-
     @Override
     public String toString() {
         return "AppWhiteListRuleTestCase{" +
@@ -108,7 +105,7 @@ public class AppWhiteListRuleTestCase {
                 ", 源IP='" + sourceIp + '\'' +
                 ", 目的IP='" + targetIp + '\'' +
                 ", 协议名称='" + protocolName + '\'' +
-                ", list=" + protocolList +
+                ", 协议规则列表=" + (protocolList != null ? protocolList.stream().map(Object::toString).collect(Collectors.joining(", ")) : "null") +
                 ", 测试信息='" + msg + '\'' +
                 ", 预期结果=" + expectedResult +
                 ", 测试结果=" + result +

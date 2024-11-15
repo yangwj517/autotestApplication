@@ -44,31 +44,44 @@ public class RuleManageService {
     /**
      * 手动创建新的应用协议白名单
      */
-    public Response<Object> addNewAppWhiteListRule(){
-        WebDriver driver = createNewWebDriverComponent.createNewWebDriver(10);
-        driver.get(baseConfig.getSecurityAuditUrl());
-        // 登录
-        Response<Object> objectResponse = loginService.loginSystem(baseConfig.getSecadminUsername(), baseConfig.getSecadminPassword(), driver);
-        if(objectResponse.getCode()==444){
-            driver.quit();
-            return objectResponse;
-        }
-        // 跳转页面
-        LeftMenuPage leftMenuPage = new LeftMenuPage(driver);
-        leftMenuPage.ruleManagement();
-        leftMenuPage.whitelistRules();
-        // 实例化应用白名单页面
-        AppWhiteListRulePage page = new AppWhiteListRulePage(driver);
-        // 加载测试用例
-        List<AppWhiteListRuleTestCase> testCases = GetTestcaseListUtil.getAppWhiteListRuleTestCaseList(filePathConfig.getAddAppWhiteListRulePath());
-        for(AppWhiteListRuleTestCase testCase : testCases){
-            testCase = page.createNewAppWhiteListRuleTestCase(testCase, driver);
-            LogOutputUtil.saveLog(filePathConfig.getLogOutPath(), LogCreateUtil.createLog(testCase.toString()));
-        }
-        // 登出
-        LogOffPage logOffPage = new LogOffPage(driver);
-        logOffPage.logOff();
-        driver.quit();
-        return RespondUtil.success("新建应用协议白名单测试完成，请转到日志页面查看详情!");
-    }
+  public Response<Object> addNewAppWhiteListRule() {
+      WebDriver driver = createNewWebDriverComponent.createNewWebDriver(10);
+      driver.get(baseConfig.getSecurityAuditUrl());
+
+      // 登录
+      Response<Object> loginResponse = loginService.loginSystem(baseConfig.getSecadminUsername(), baseConfig.getSecadminPassword(), driver);
+      if (loginResponse.getCode() == 444) {
+          driver.quit();
+          return loginResponse;
+      }
+
+      // 跳转页面
+      LeftMenuPage leftMenuPage = new LeftMenuPage(driver);
+      leftMenuPage.ruleManagement();
+      leftMenuPage.whitelistRules();
+
+      // 实例化应用白名单页面
+      AppWhiteListRulePage page = new AppWhiteListRulePage(driver);
+
+      // 加载测试用例
+      List<AppWhiteListRuleTestCase> testCases = GetTestcaseListUtil.getAppWhiteListRuleTestCaseList(filePathConfig.getAddAppWhiteListRulePath());
+
+      for (AppWhiteListRuleTestCase testCase : testCases) {
+          try {
+              testCase = page.createNewAppWhiteListRuleTestCase(testCase, driver);
+              LogOutputUtil.saveLog(filePathConfig.getLogOutPath(), LogCreateUtil.createLog(testCase.toString()));
+          } catch (Exception e) {
+              // 记录异常信息
+              LogOutputUtil.saveLog(filePathConfig.getLogOutPath(), LogCreateUtil.createLog("测试用例执行失败: " + e.getMessage()));
+          }
+      }
+
+      // 登出
+      LogOffPage logOffPage = new LogOffPage(driver);
+      logOffPage.logOff();
+
+      driver.quit();
+      return RespondUtil.success("新建应用协议白名单测试完成，请转到日志页面查看详情!");
+  }
+
 }

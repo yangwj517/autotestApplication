@@ -33,4 +33,32 @@ public class EnipIo implements ProtocolBaseInterface {
     public void setProperties(String k , Object v) {
         properties.put(k,v);
     }
+    @Override
+    public String getInterfaceId() {
+        return (String) properties.get("interfaceId");
+    }
+
+    @Override
+    public String getActionCode() {
+        return (String) properties.get("actionCode");
+    }
+
+    @Override
+    public String getPartType() {
+        return (String) properties.get("partType");
+    }
+
+    @Override
+    public String getDesc() {
+        return (String) properties.get("desc");
+    }
+    @Override
+    public String toString() {
+        return "Eniplo协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 地址类型='" + properties.get("addressType") + '\'' +
+                ", 数据类型='" + properties.get("dataAddress") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }

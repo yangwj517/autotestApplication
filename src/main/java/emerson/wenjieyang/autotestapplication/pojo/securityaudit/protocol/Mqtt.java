@@ -33,4 +33,32 @@ public class Mqtt implements ProtocolBaseInterface {
     public void setProperties(String k , Object v){
         properties.put(k,v);
     }
+    @Override
+    public String getInterfaceId() {
+        return (String) properties.get("interfaceId");
+    }
+
+    @Override
+    public String getActionCode() {
+        return (String) properties.get("actionCode");
+    }
+
+    @Override
+    public String getPartType() {
+        return (String) properties.get("partType");
+    }
+
+    @Override
+    public String getDesc() {
+        return (String) properties.get("desc");
+    }
+    @Override
+    public String toString() {
+        return "Mqtt协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 消息类型='" + properties.get("msgType") + '\'' +
+                ", 主题名称='" + properties.get("topicName") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }

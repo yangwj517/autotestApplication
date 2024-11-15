@@ -1,6 +1,7 @@
 package emerson.wenjieyang.autotestapplication.pojo.securityaudit.page;
 
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.ProFinetIo;
+import emerson.wenjieyang.autotestapplication.pojo.securityaudit.protocol.baseInterface.ProtocolBaseInterface;
 import emerson.wenjieyang.autotestapplication.pojo.securityaudit.testCase.AppWhiteListRuleTestCase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -9,10 +10,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 
 /**
  * @className: AppWhiteListRulePage
@@ -21,11 +23,10 @@ import java.util.concurrent.TimeUnit;
  * @Version: 1.0
  * @description: 应用协议白名单规则
  */
-
-
-
 public class AppWhiteListRulePage {
-    
+
+    private static final Logger logger = LoggerFactory.getLogger(AppWhiteListRulePage.class);
+
     // 新增按钮
     @FindBy(xpath = "//*[@id='netWhitelist_ind_btnAddShow']")
     private WebElement buttonNetWhitelistIndAdd;
@@ -41,7 +42,7 @@ public class AppWhiteListRulePage {
     // 源IP地址
     @FindBy(xpath = "/html/body/div[5]/div[2]/div/ul/li[3]/input")
     private WebElement sourceIpInput;
-    
+
     // 目的IP地址
     @FindBy(xpath = "/html/body/div[5]/div[2]/div/ul/li[4]/input")
     private WebElement targetIpInput;
@@ -66,158 +67,59 @@ public class AppWhiteListRulePage {
     @FindBy(xpath = "//button[@class='btn btn-danger btn-sm']")
     private WebElement cancelButton;
 
-    /*
-    新增列表以 r_c 索引拼接格式作为新的一行 ， 比如第一行 第一个 0_0 , 第二行第一个 1_0
-    所以不在外做出定义，直接在方法里操作。
-     */
-
-
-
     public AppWhiteListRulePage(WebDriver driver) {
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     /**
-     * 此方法不仅需要接受用例，同时要知道这是第几个用例。还需要使用driver找到控件
+     * 设置列表项
      */
-    private void setList1(ProFinetIo proFinetIo, int index, WebDriver driver) {
+    private void setListItem(ProFinetIo proFinetIo, int index, WebDriver driver) {
         try {
             TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
-        // FIXME : 下拉框选择any时 ，程序会找不到。需要修复。
-        // 仅需要知道是第几行就行了
         // 接口ID
-        WebElement interfaceID = driver.findElement(By.cssSelector("select[data-idx='" + index + "_0']"));
-        Select select = new Select(interfaceID);
-        if(!proFinetIo.getInterfaceId().equals("any")&&!proFinetIo.getInterfaceId().isEmpty()){
-            try{
-                select.selectByVisibleText(proFinetIo.getInterfaceId());
-            }catch (NoSuchElementException e){
-            }
-        }
-
+        setSelectValue(driver, "select[data-idx='" + index + "_0']", proFinetIo.getInterfaceId());
 
         // 操作码
-        WebElement actionCode = driver.findElement(By.cssSelector("select[data-idx='" + index + "_1']"));
-        Select select1 = new Select(actionCode);
-        if(!proFinetIo.getActionCode().equals("any")&&!proFinetIo.getActionCode().isEmpty()){
-            try{
-                select1.selectByVisibleText(proFinetIo.getActionCode());
-            }catch (NoSuchElementException e){}
-        }
-
+        setSelectValue(driver, "select[data-idx='" + index + "_1']", proFinetIo.getActionCode());
 
         // 块类型
-        WebElement partType = driver.findElement(By.cssSelector("select[data-idx='" + index + "_2']"));
-        Select select2 = new Select(partType);
-        if(!proFinetIo.getPartType().equals("any")&&!proFinetIo.getPartType().isEmpty()){
-            try{
-                select2.selectByVisibleText(proFinetIo.getPartType());
-            }catch (NoSuchElementException e){}
-        }
-
+        setSelectValue(driver, "select[data-idx='" + index + "_2']", proFinetIo.getPartType());
 
         // 描述
-        WebElement desc = driver.findElement(By.cssSelector("select[data-idx='" + index + "_3']"));
-        desc.sendKeys(proFinetIo.getDesc());
+        sendKeysToElement(driver, "select[data-idx='" + index + "_3']", proFinetIo.getDesc());
+    }
 
-    } // PROFINET-IO
-    private void setList2(ProFinetIo proFinetIo, int index, WebDriver driver) {
+    /**
+     * 设置下拉框值
+     */
+    private void setSelectValue(WebDriver driver, String cssSelector, String value) {
+        if (!value.equals("any") && !value.isEmpty()) {
+            try {
+                WebElement element = driver.findElement(By.cssSelector(cssSelector));
+                Select select = new Select(element);
+                select.selectByVisibleText(value);
+            } catch (NoSuchElementException e) {
+                logger.warn("Element not found for selector: {}", cssSelector);
+            }
+        }
+    }
+
+    /**
+     * 发送文本到元素
+     */
+    private void sendKeysToElement(WebDriver driver, String cssSelector, String value) {
         try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            WebElement element = driver.findElement(By.cssSelector(cssSelector));
+            element.sendKeys(value);
+        } catch (NoSuchElementException e) {
+            logger.warn("Element not found for selector: {}", cssSelector);
         }
-
-        // FIXME : 下拉框选择any时 ，程序会找不到。需要修复。
-        // 仅需要知道是第几行就行了
-        // 接口ID
-        WebElement interfaceID = driver.findElement(By.cssSelector("select[data-idx='" + index + "_0']"));
-        Select select = new Select(interfaceID);
-        if(!proFinetIo.getInterfaceId().equals("any")&&!proFinetIo.getInterfaceId().isEmpty()){
-            try{
-                select.selectByVisibleText(proFinetIo.getInterfaceId());
-            }catch (NoSuchElementException e){
-            }
-        }
-
-
-        // 操作码
-        WebElement actionCode = driver.findElement(By.cssSelector("select[data-idx='" + index + "_1']"));
-        Select select1 = new Select(actionCode);
-        if(!proFinetIo.getActionCode().equals("any")&&!proFinetIo.getActionCode().isEmpty()){
-            try{
-                select1.selectByVisibleText(proFinetIo.getActionCode());
-            }catch (NoSuchElementException e){}
-        }
-
-
-        // 块类型
-        WebElement partType = driver.findElement(By.cssSelector("select[data-idx='" + index + "_2']"));
-        Select select2 = new Select(partType);
-        if(!proFinetIo.getPartType().equals("any")&&!proFinetIo.getPartType().isEmpty()){
-            try{
-                select2.selectByVisibleText(proFinetIo.getPartType());
-            }catch (NoSuchElementException e){}
-        }
-
-
-        // 描述
-        WebElement desc = driver.findElement(By.cssSelector("select[data-idx='" + index + "_3']"));
-        desc.sendKeys(proFinetIo.getDesc());
-
-    } // Modbus-TCP
-
-
-    private void setList3(ProFinetIo proFinetIo, int index, WebDriver driver) {
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        // FIXME : 下拉框选择any时 ，程序会找不到。需要修复。
-        // 仅需要知道是第几行就行了
-        // 接口ID
-        WebElement interfaceID = driver.findElement(By.cssSelector("select[data-idx='" + index + "_0']"));
-        Select select = new Select(interfaceID);
-        if(!proFinetIo.getInterfaceId().equals("any")&&!proFinetIo.getInterfaceId().isEmpty()){
-            try{
-                select.selectByVisibleText(proFinetIo.getInterfaceId());
-            }catch (NoSuchElementException e){
-            }
-        }
-
-
-        // 操作码
-        WebElement actionCode = driver.findElement(By.cssSelector("select[data-idx='" + index + "_1']"));
-        Select select1 = new Select(actionCode);
-        if(!proFinetIo.getActionCode().equals("any")&&!proFinetIo.getActionCode().isEmpty()){
-            try{
-                select1.selectByVisibleText(proFinetIo.getActionCode());
-            }catch (NoSuchElementException e){}
-        }
-
-
-        // 块类型
-        WebElement partType = driver.findElement(By.cssSelector("select[data-idx='" + index + "_2']"));
-        Select select2 = new Select(partType);
-        if(!proFinetIo.getPartType().equals("any")&&!proFinetIo.getPartType().isEmpty()){
-            try{
-                select2.selectByVisibleText(proFinetIo.getPartType());
-            }catch (NoSuchElementException e){}
-        }
-
-
-        // 描述
-        WebElement desc = driver.findElement(By.cssSelector("select[data-idx='" + index + "_3']"));
-        desc.sendKeys(proFinetIo.getDesc());
-
-    } // Modbus-TCP
-
+    }
 
     /**
      * 创建确认
@@ -238,15 +140,17 @@ public class AppWhiteListRulePage {
      */
     private void selectProtocol(String protocol) {
         Select select = new Select(protoList);
-        try{
+        try {
             select.selectByVisibleText(protocol);
-        }catch(Exception e){}// 报错跳过
+        } catch (Exception e) {
+            logger.warn("Protocol not found: {}", protocol);
+        }
     }
-    
+
     /**
      * 目的IP
      */
-    private void enterTargetIpInput(String ip){
+    private void enterTargetIpInput(String ip) {
         targetIpInput.sendKeys(ip);
     }
 
@@ -279,26 +183,24 @@ public class AppWhiteListRulePage {
     }
 
     /**
-     * 新增测试用例  FIXME : 缺少弹窗处理，待添加
+     * 新增测试用例
      * @param ruleTestCase
+     * @param driver
      * @return
      */
-    public AppWhiteListRuleTestCase createNewAppWhiteListRuleTestCase(AppWhiteListRuleTestCase ruleTestCase,WebDriver driver) {
+    public AppWhiteListRuleTestCase createNewAppWhiteListRuleTestCase(AppWhiteListRuleTestCase ruleTestCase, WebDriver driver) {
         clickButtonNetWhitelistIndAdd();
         enterRuleNameInput(ruleTestCase.getRuleName());
         enterRuleDescInput(ruleTestCase.getRuleDesc());
         enterSourceIpInput(ruleTestCase.getSourceIp());
         enterTargetIpInput(ruleTestCase.getTargetIp());
         selectProtocol(ruleTestCase.getProtocolName());
-        List<ProFinetIo> list = ruleTestCase.getList();
-        for (int i = 0; i <list.size() ; i++) {
+        List<ProtocolBaseInterface> list = ruleTestCase.getProtocolList();
+        for (int i = 0; i < list.size(); i++) {
             clickAddButton();
             // 填写表格内容
-            setList1(list.get(i),i,driver);
+            setListItem((ProFinetIo) list.get(i), i, driver);
         }
         return ruleTestCase;
     }
-
-
-
 }

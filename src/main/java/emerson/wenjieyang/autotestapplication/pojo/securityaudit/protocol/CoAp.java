@@ -32,4 +32,32 @@ public class CoAp implements ProtocolBaseInterface {
     public void setProperties(String k , Object v) {
         properties.put(k,v);
     }
+    @Override
+    public String getInterfaceId() {
+        return (String) properties.get("interfaceId");
+    }
+
+    @Override
+    public String getActionCode() {
+        return (String) properties.get("actionCode");
+    }
+
+    @Override
+    public String getPartType() {
+        return (String) properties.get("partType");
+    }
+
+    @Override
+    public String getDesc() {
+        return (String) properties.get("desc");
+    }
+    @Override
+    public String toString() {
+        return "CoAp协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 消息类型='" + properties.get("msgType") + '\'' +
+                ", 功能码='" + properties.get("funCode") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }

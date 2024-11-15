@@ -35,4 +35,32 @@ public class Mms implements ProtocolBaseInterface {
     public void setProperties(String k , Object v ){
         properties.put(k , v);
     }
+    @Override
+    public String getInterfaceId() {
+        return (String) properties.get("interfaceId");
+    }
+
+    @Override
+    public String getActionCode() {
+        return (String) properties.get("actionCode");
+    }
+
+    @Override
+    public String getPartType() {
+        return (String) properties.get("partType");
+    }
+
+    @Override
+    public String getDesc() {
+        return (String) properties.get("desc");
+    }
+    @Override
+    public String toString() {
+        return "Mms协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 类型='" + properties.get("type") + '\'' +
+                ", 服务='" + properties.get("serve") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }

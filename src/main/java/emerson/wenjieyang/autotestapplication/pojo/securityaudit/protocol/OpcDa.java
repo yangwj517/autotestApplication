@@ -30,4 +30,35 @@ public class OpcDa implements ProtocolBaseInterface {
     public Map<String, Object> getProperties() {
         return Map.of();
     }
+    @Override
+    public String getInterfaceId() {
+        return (String) properties.get("interfaceId");
+    }
+
+    @Override
+    public String getActionCode() {
+        return (String) properties.get("actionCode");
+    }
+
+    @Override
+    public String getPartType() {
+        return (String) properties.get("partType");
+    }
+
+    @Override
+    public String getDesc() {
+        return (String) properties.get("desc");
+    }
+    @Override
+    public String toString() {
+        return "OpcDa协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", uuid='" + properties.get("uuid") + '\'' +
+                ", 操作码='" + properties.get("actionCode") + '\'' +
+                ", 项类型='" + properties.get("type") + '\'' +
+                ", 项名='" + properties.get("name") + '\'' +
+                ", 项值='" + properties.get("value") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }

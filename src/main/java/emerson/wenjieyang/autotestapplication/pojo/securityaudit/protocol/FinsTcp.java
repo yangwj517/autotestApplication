@@ -34,4 +34,32 @@ public class FinsTcp implements ProtocolBaseInterface {
     public void setProperties(String k , String v) {
         properties.put(k,v);
     }
+    @Override
+    public String getInterfaceId() {
+        return (String) properties.get("interfaceId");
+    }
+
+    @Override
+    public String getActionCode() {
+        return (String) properties.get("actionCode");
+    }
+
+    @Override
+    public String getPartType() {
+        return (String) properties.get("partType");
+    }
+
+    @Override
+    public String getDesc() {
+        return (String) properties.get("desc");
+    }
+    @Override
+    public String toString() {
+        return "FinsTcp协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 功能码='" + properties.get("funCode") + '\'' +
+                ", 磁盘号='" + properties.get("diskNum") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }

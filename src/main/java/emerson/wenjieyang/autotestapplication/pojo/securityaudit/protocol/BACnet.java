@@ -33,4 +33,32 @@ public class BACnet implements ProtocolBaseInterface {
     public void setProperties(String k , Object v) {
         properties.put(k,v);
     }
+    @Override
+    public String getInterfaceId() {
+        return (String) properties.get("interfaceId");
+    }
+
+    @Override
+    public String getActionCode() {
+        return (String) properties.get("actionCode");
+    }
+
+    @Override
+    public String getPartType() {
+        return (String) properties.get("partType");
+    }
+
+    @Override
+    public String getDesc() {
+        return (String) properties.get("desc");
+    }
+    @Override
+    public String toString() {
+        return "BACent协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 数据单元类型='" + properties.get("dataCellTyp") + '\'' +
+                ", 服务选择='" + properties.get("serveSelect") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }
