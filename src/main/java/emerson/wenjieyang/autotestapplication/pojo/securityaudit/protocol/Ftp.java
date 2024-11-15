@@ -31,4 +31,12 @@ public class Ftp implements ProtocolBaseInterface {
     public void setProperties(String k , Object v) {
         properties.put(k , v);
     }
+    @Override
+    public String toString() {
+        return "FTP协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 命令='" + properties.get("order") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }

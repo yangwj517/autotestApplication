@@ -36,4 +36,16 @@ public class Focas implements ProtocolBaseInterface {
     public void setProperties(String k , Object v ) {
         properties.put(k,v);
     }
+    @Override
+    public String toString() {
+        return "Focas协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 命令='" + properties.get("order") + '\'' +
+                ", 类型='" + properties.get("type") + '\'' +
+                ", 按键='" + properties.get("keyBroad") + '\'' +
+                ", 功能码='" + properties.get("funCode") + '\'' +
+                ", 子功能码='" + properties.get("sunFunCode") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }

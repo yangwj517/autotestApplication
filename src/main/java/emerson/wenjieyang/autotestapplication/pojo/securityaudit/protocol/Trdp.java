@@ -38,4 +38,17 @@ public class Trdp implements ProtocolBaseInterface {
     public void setProperties(String k , Object v){
         properties.put(k,v);
     }
+    @Override
+    public String toString() {
+        return "Trdp协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 报文类型='" + properties.get("packetType") + '\'' +
+                ", ETB拓扑计数器='" + properties.get("etbCount") + '\'' +
+                ", 列车操作拓扑计数器='" + properties.get("count") + '\'' +
+                ", 应答IP地址='" + properties.get("responseIp") + '\'' +
+                ", 源URL='" + properties.get("sourceUrl") + '\'' +
+                ", 目的URL='" + properties.get("targetUrl") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }

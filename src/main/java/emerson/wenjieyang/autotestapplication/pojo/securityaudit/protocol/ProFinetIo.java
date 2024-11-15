@@ -26,5 +26,15 @@ public class ProFinetIo implements ProtocolBaseInterface {
     public void setProperties(String k , Object v){
         properties.put(k , v);
     }
+    @Override
+    public String toString() {
+        return "ProInf协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 接口ID='" + properties.get("interfaceId") + '\'' +
+                ", 操作码='" + properties.get("actionCode") + '\'' +
+                ", 块类型='" + properties.get("partType") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 
 }

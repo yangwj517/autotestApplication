@@ -46,5 +46,18 @@ public class ModbusTcp implements ProtocolBaseInterface {
     public void setProperties(String k , Object v){
         properties.put(k , v);
     }
+    @Override
+    public String toString() {
+        return "ModbusTcp协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 从站地址='" + properties.get("stationAddress") + '\'' +
+                ", 功能码='" + properties.get("funCode") + '\'' +
+                ", 起始地址='" + properties.get("beginRange") + '\'' +
+                ", 结束地址='" + properties.get("endRange") + '\'' +
+                ", 值类型='" + properties.get("valueType") + '\'' +
+                ", 值范围='" + properties.get("valueRange") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 
 }

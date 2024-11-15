@@ -32,4 +32,12 @@ public class Egd implements ProtocolBaseInterface {
     public Map<String, Object> getProperties() {
         return properties;
     }
+    @Override
+    public String toString() {
+        return "Egd协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 状态码='" + properties.get("statusCode") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }

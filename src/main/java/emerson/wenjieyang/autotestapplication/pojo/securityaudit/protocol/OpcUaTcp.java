@@ -32,4 +32,12 @@ public class OpcUaTcp implements ProtocolBaseInterface {
     public void setProperties(String k , Object v){
         properties.put(k , v);
     }
+    @Override
+    public String toString() {
+        return "OpcUaTcp协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 服务码='" + properties.get("serveCode") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }

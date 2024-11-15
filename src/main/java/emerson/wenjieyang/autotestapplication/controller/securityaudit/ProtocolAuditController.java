@@ -4,6 +4,7 @@ import emerson.wenjieyang.autotestapplication.pojo.Response;
 import emerson.wenjieyang.autotestapplication.service.securityaudit.AuditService;
 import emerson.wenjieyang.autotestapplication.service.securityaudit.RemoteAuditService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +39,8 @@ public class ProtocolAuditController {
     @Deprecated
     @GetMapping("/local/{protocol}/{interfaceName}")
     @Operation(summary = "根据协议名称和网卡接口，测试审计功能")
+    @Parameter(name = "protocol", description = "协议名称")
+    @Parameter(name = "interfaceName", description = "网卡接口名称")
     public Response<Object> protocolAudit(@PathVariable("protocol") String protocol,@PathVariable("interfaceName") String interfaceName) {
         // 从这里调用service
         return auditService.accessAuditPage(protocol,interfaceName);
@@ -49,6 +52,7 @@ public class ProtocolAuditController {
      */
     @GetMapping("/sendPacket/{interfaceName}")
     @Operation(summary = "调用远程接口，实现使用另一台设备回放报文")
+    @Parameter(name = "interfaceName", description = "网卡接口名称")
     public Response<Object> remoteSendProtocolPacket(@PathVariable("interfaceName") String interfaceName)  {
         return remoteAuditService.RemoteSendPackets(interfaceName);
     }

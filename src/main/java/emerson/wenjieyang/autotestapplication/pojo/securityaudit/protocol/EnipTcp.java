@@ -34,4 +34,15 @@ public class EnipTcp implements ProtocolBaseInterface {
     public void setProperties(String k , Object v) {
         properties.put(k,v);
     }
+    @Override
+    public String toString() {
+        return "EnipTcp协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 指令='" + properties.get("order") + '\'' +
+                ", 地址类型='" + properties.get("addressType") + '\'' +
+                ", 数据类型='" + properties.get("dataType") + '\'' +
+                ", CIP数据段='" + properties.get("cipDataSegment") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }

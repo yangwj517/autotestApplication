@@ -32,4 +32,12 @@ public class SIP implements ProtocolBaseInterface {
     public void setProperties(String k , Object v){
         properties.put(k,v);
     }
+    @Override
+    public String toString() {
+        return "SIP协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 方法名='" + properties.get("funName") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }

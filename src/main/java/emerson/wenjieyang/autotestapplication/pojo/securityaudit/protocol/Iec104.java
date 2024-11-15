@@ -38,5 +38,18 @@ public class Iec104 implements ProtocolBaseInterface {
     public void setProperties(String k , Object v) {
         properties.put(k , v);
     }
+    @Override
+    public String toString() {
+        return "Iec04协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 帧类型='" + properties.get("type") + '\'' +
+                ", 类型标识='" + properties.get("typeFlag") + '\'' +
+                ", 传输原因='" + properties.get("transferReason") + '\'' +
+                ", 公共地址='" + properties.get("publicAddress") + '\'' +
+                ", 信息体地址='" + properties.get("infAddress") + '\'' +
+                ", 信息体参数='" + properties.get("infParam") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 
 }

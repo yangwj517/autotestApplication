@@ -38,4 +38,18 @@ public class S7 implements ProtocolBaseInterface {
     public void setProperties(String k , Object v) {
         properties.put(k , v);
     }
+    @Override
+    public String toString() {
+        return "S7协议 {" +
+                "协议类型='" + properties.get("protocolType") + '\'' +
+                ", 操作类型='" + properties.get("controlType") + '\'' +
+                ", 读、写 域='" + properties.get("ioDomain") + '\'' +
+                ", 数据块编号='" + properties.get("dataNum") + '\'' +
+                ", 起始地址='" + properties.get("beginAddress") + '\'' +
+                ", 数据类型='" + properties.get("dataType") + '\'' +
+                ", 数据类型长度='" + properties.get("dataLength") + '\'' +
+                ", 数据值范围='" + properties.get("dataRange") + '\'' +
+                ", 描述='" + properties.get("desc") + '\'' +
+                '}';
+    }
 }
